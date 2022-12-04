@@ -1,8 +1,12 @@
 # Hosting a Full-Stack Application
 
-### **You can use you own project completed in previous courses or use the provided Udagram app for completing this final project.**
+# Status Badge
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/yousef5/udagram/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/yousef5/udagram/tree/main)
 
 ---
+
+The application is available on http://yousef-udagram.s3-website-us-east-1.amazonaws.com/home/
 
 In this project you will learn how to take a newly developed Full-Stack application built for a retailer and deploy it to a cloud service provider so that it is available to customers. You will use the aws console to start and configure the services the application needs such as a database to store product information and a web server allowing the site to be discovered by potential customers. You will modify your package.json scripts and replace hard coded secrets with environment variables in your code.
 
@@ -15,8 +19,6 @@ The project will also include writing documentation and runbooks covering the op
 # Udagram
 
 This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
-
-
 
 ### Dependencies
 
