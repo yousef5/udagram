@@ -44,6 +44,37 @@ jobs:
           name: API Build
           command: |
             npm run api:build
+  test:
+    docker:
+      - image: "cimg/node:16.16-browsers"
+    steps:
+      # install node and checkout code
+      - node/install:
+          node-version: '16.16'         
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      # Use root level package.json to install dependencies in the frontend app
+      - run:
+          name: Install Front-End Dependencies
+          command: |
+            echo "NODE --version" 
+            echo $(node --version)
+            echo "NPM --version" 
+            echo $(npm --version)
+            npm run frontend:install
+      # Build the frontend app
+      - run:
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      # Test the frontend app
+      - run:
+         name: run Front-End unit test
+         command: |
+          google-chrome --version
+          chromedriver --version
+          npm run frontend:test          
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -65,7 +96,7 @@ workflows:
   udagram:
     jobs:
       - build
-      - hold:
+      - hold1:
           filters:
             branches:
               only:
@@ -73,6 +104,17 @@ workflows:
           type: approval
           requires:
             - build
+        - test:
+          requires:
+            - hold1
+      - hold2:
+          filters:
+            branches:
+              only:
+                - main
+          type: approval
+          requires:
+            - test
       - deploy:
           requires:
-            - hold
+            - hold2
