@@ -68,6 +68,8 @@ workflows:
       - hold:
           filters:
             branches:
+              only:
+                - main
           type: approval
           requires:
             - build
