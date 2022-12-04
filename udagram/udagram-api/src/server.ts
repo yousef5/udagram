@@ -34,7 +34,7 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
   // worry about the complexities of CORS.
   app.use(
     cors({
-      allowedHeaders: [
+      "allowedHeaders": [
         "Origin",
         "X-Requested-With",
         "Content-Type",
@@ -45,9 +45,9 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Methods",
       ],
-      methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-      preflightContinue: true,
-      origin: "*",
+      "methods": "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+      "preflightContinue": true,
+      "origin": "*",
     })
   );
 
