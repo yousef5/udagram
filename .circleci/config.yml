@@ -51,7 +51,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-           node-version: '16.16' 
+          node-version: "16.16"
       - eb/setup
       - aws-cli/setup
       - checkout
@@ -59,18 +59,15 @@ jobs:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
-             npm run deploy
+            npm run deploy
 
 workflows:
   udagram:
     jobs:
       - build
-      - deploy
       - hold:
           filters:
             branches:
-              only:
-                - master
           type: approval
           requires:
             - build
