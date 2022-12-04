@@ -50,7 +50,7 @@ jobs:
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '16.16'         
+          node-version: "16.16"
       - checkout
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
@@ -70,11 +70,11 @@ jobs:
             npm run frontend:build
       # Test the frontend app
       - run:
-         name: run Front-End unit test
-         command: |
-          google-chrome --version
-          chromedriver --version
-          npm run frontend:test          
+          name: run Front-End unit test
+          command: |
+            google-chrome --version
+            chromedriver --version
+            npm run frontend:test
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -96,18 +96,10 @@ workflows:
   udagram:
     jobs:
       - build
-      - hold1:
-          filters:
-            branches:
-              only:
-                - main
-          type: approval
+      - test:
           requires:
             - build
-        - test:
-          requires:
-            - hold1
-      - hold2:
+      - hold:
           filters:
             branches:
               only:
@@ -117,4 +109,4 @@ workflows:
             - test
       - deploy:
           requires:
-            - hold2
+            - hold
